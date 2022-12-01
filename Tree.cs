@@ -47,16 +47,20 @@ class Tree<T> where T : struct
             if(previousPtr.Child() != null)
             {
                 Node<T> ptr = previousPtr.Child();
-                previousPtr.SetChild(ptr.Child());
-
+                
                 if(ptr.Child() != null)
                 {
+                    previousPtr.SetChild(ptr.Child());
                     Node<T> childSiblingPtr = ptr.Child();
                     while(childSiblingPtr.Next() != null)
                     {
                         childSiblingPtr = childSiblingPtr.Next();
                     }
                     childSiblingPtr.SetNext(ptr.Next());
+                }
+                else
+                {
+                    previousPtr.SetChild(ptr.Next());
                 }
             }
             else
